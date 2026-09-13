@@ -67,3 +67,26 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+
+# Скомпилированные файлы
+*.exe
+*.obj
+*.ilk
+*.pdb
+*.o
+*.out
+
+# Папки сборки
+build/
+Debug/
+Release/
+x64/
+x86/
+.vs/
+
+# Файлы VS Code
+.vscode/settings.json
+
+# Системные файлы
+Thumbs.db
+.DS_Store
