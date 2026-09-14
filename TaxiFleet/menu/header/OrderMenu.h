@@ -1,4 +1,6 @@
-#pragma once
-#include "Order.h"
+#ifndef ORDERMENU_H
+#define ORDERMENU_H
 
 void showOrderMenu();
+
+#endif
