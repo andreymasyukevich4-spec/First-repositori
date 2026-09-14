@@ -2,6 +2,7 @@
 #include <vector>
 #include "Car.h"
 #include "Order.h"
+
 using namespace std;
 
 class TaxiFleet {
@@ -17,4 +18,6 @@ public:
     void assignOrder(int orderIndex);
     void printAllCars() const;
     void printAllOrders() const;
+    vector<Car>& getCars();
+    vector<Order>& getOrders();
 };
