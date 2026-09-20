@@ -15,7 +15,33 @@ string Order::getFromAddress() const { return fromAddress; }
 string Order::getToAddress() const { return toAddress; }
 int Order::getPassengers() const { return passengers; }
 
-void Order::print() const {
-    cout << "Zakaz: " << fromAddress << " -> " << toAddress << "\n";
-    cout << "Passengers: " << passengers << "\n";
+bool Order::operator==(const Order& other) const{
+    return fromAddress == other.fromAddress;
+}
+
+bool Order::operator==(const Order& other) const{
+    return passengers < other.passengers;
+}
+
+bool Order::operator==(const Order& other) const{
+    return passengers > other.passengers;
+}
+ostream& operator<<(ostream& os, const Order& order) {
+    os << "Zakaz: " << order.fromAddress << " -> " << order.toAddress << "\n";
+    os << "  Passazhirov: " << order.passengers << "\n";
+    return os;
+}
+
+istream& operator>>(istream& is, Order& order) {
+    cout << "Enter From Address: ";
+    is >> order.fromAddress;
+    cout << "Enter To Address: ";
+    is >> order.toAddress;
+    cout << "Enter Passengers: ";
+    is >> order.passengers;
+    return is;
+}
+
+bool isOrderForCar(const Order& order, const Car& car) {
+    return car.getSeats() >= order.passengers;
 }

@@ -1,6 +1,8 @@
-#pragma once
+#ifndef ORDER_H
+#define ORDER_H
 #include <string>
 #include <iostream>
+#include "Car.h"
 
 using namespace std;
 
@@ -22,5 +24,13 @@ public:
     string getToAddress() const;
     int getPassengers() const;
 
-    void print() const;
+    bool operator==(const Order& other) const;
+    bool operator<(const Order& other) const;
+    bool operator>(const Order& other) const;
+
+    friend ostream& operator<<(ostream& os, const Order& order);
+    friend istream& operator>>(istream& is, Order& order);
+    friend bool sSuitableForOrder(const Order& order, const Car& car);
 };
+
+#endif

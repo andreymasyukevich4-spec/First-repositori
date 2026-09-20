@@ -15,7 +15,7 @@ void addCarMenu(TaxiFleet& fleet) {
     int s = readPositiveInt("Enter Seats: ");
     string t = readString("Enter Type: ");
     string d = readString("Enter Driver Name: ");
-    fleet.addCar(Car(r, m, y, s, t, d));
+    fleet += Car(r, m, y, s, t, d);
     cout << "Mashina uspeshno dobavlena!\n";
 }
 
@@ -124,6 +124,18 @@ void editOrderMenu(TaxiFleet& fleet) {
     }
 }
 
+void removeCarMenu(TaxiFleet& fleet) {
+    if (fleet.getCars().empty()) {
+        cout << "Net dostupnyh mashin.\n";
+        return;
+    }
+    cout << "\n!Udalenie mashiny!\n";
+    cout << "Dostupno mashin: 0 do " << fleet.getCars().size() - 1 << "\n";
+    int idx = readIndex("Enter car index to remove: ", fleet.getCars().size());
+    Car carToRemove = fleet.getCars()[idx];
+    fleet -= carToRemove;
+}
+
 void showTaxiFleetMenu(TaxiFleet& fleet) {
     int choice;
     do {
@@ -136,6 +148,7 @@ void showTaxiFleetMenu(TaxiFleet& fleet) {
         cout << "6. Naznachit zakaz na mashinu\n";
         cout << "7. Izmenit harakteristiki mashiny\n";
         cout << "8. Izmenit harakteristiki zakaza\n";
+        cout << "9. Udalit mashinu iz taksoparka\n";
         cout << "0. Nazad v Main Menu\n";
         cout << "Choice: ";
         
@@ -155,6 +168,7 @@ void showTaxiFleetMenu(TaxiFleet& fleet) {
             case 6: assignOrderMenu(fleet); break;
             case 7: editCarMenu(fleet); break;
             case 8: editOrderMenu(fleet); break;
+            case 9: removeCarMenu(fleet); break;
             case 0: cout << "Vozvrashchenie v Main Menu...\n"; break;
             default: cout << "Neverniy vibor! Poprobuyte snova.\n";
         }

@@ -25,7 +25,7 @@ void showCarMenu() {
             case 1: {
                 Car c;
                 cout << "\nDefault car created:\n";
-                c.print();
+                cout << c;
                 break;
             }
             case 2: {
@@ -38,7 +38,7 @@ void showCarMenu() {
                 string d = readString("Enter Driver Name: ");
                 Car c(r, m, y, s, t, d);
                 cout << "\nCar created:\n";
-                c.print();
+                cout << c;
                 break;
             }
             case 0: break;

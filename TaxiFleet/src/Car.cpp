@@ -21,10 +21,43 @@ int Car::getSeats() const { return seats; }
 string Car::getType() const { return type; }
 string Car::getDriverName() const { return driverName; }
 
-void Car::print() const {
-    cout << "Avtomobil: " << model << " (" << type << ")\n";
-    cout << "  Reg. nomer: " << regNumber << "\n";
-    cout << "  God vypuska: " << year << "\n";
-    cout << "  Mest: " << seats << "\n";
-    cout << "  Voditel: " << driverName << "\n";
+bool Car::operator==(const Car& other) const{
+    return regNumber == other.regNumber;
+}
+
+bool Car::operator==(const Car& other) const{
+    return seats < other.seats;
+}
+
+bool Car::operator==(const Car& other) const{
+    return seats > other.seats;
+}
+
+ostream& operator<<(ostream& os, const Car& car){
+    os << "Avtomobil: " << car.model << " (" << car.type << ")\n";
+    os << "  Reg. nomer: " << car.regNumber << "\n";
+    os << "  God vypuska: " << car.year << "\n";
+    os << "  Mest: " << car.seats << "\n";
+    os << "  Voditel: " << car.driverName << "\n";
+return os;
+}
+
+istream& operator>>(istream& is, Car& car) {
+    cout << "Enter Registration Number: ";
+    is >> car.regNumber;
+    cout << "Enter Model: ";
+    is >> car.model;
+    cout << "Enter Year: ";
+    is >> car.year;
+    cout << "Enter Seats: ";
+    is >> car.seats;
+    cout << "Enter Type: ";
+    is >> car.type;
+    cout << "Enter Driver Name: ";
+    is >> car.driverName;
+    return is;
+}
+
+bool isSuitableForOrder(const Car& car, int passengers) {
+    return car.seats >= passengers;
 }

@@ -66,7 +66,7 @@ void TaxiFleet::printAllCars() const {
     cout << "\n!Avtomobili v taksoparke!\n";
     for (size_t i = 0; i < cars.size(); ++i) {
         cout << "Index: " << i << "\n";
-        cars[i].print();
+        cout << cars[i];
         cout << "--------------------\n";
     }
 }
@@ -75,8 +75,34 @@ void TaxiFleet::printAllOrders() const {
     cout << "\n!Zakazi!\n";
     for (size_t i = 0; i < orders.size(); ++i) {
         cout << "Index: " << i << "\n";
-        orders[i].print();
+        cout << orders[i];
         cout << "--------------------\n";
     }
 }
 
+vector<Car>& TaxiFleet::getCars() { return cars; }
+vector<Order>& TaxiFleet::getOrders() { return orders; }
+
+TaxiFleet& TaxiFleet::operator+=(const Car& car) {
+    cars.push_back(car);
+    return *this;
+}
+
+TaxiFleet& TaxiFleet::operator-=(const Car& car) {
+    bool found = false;
+    for (auto it = cars.begin(); it != cars.end(); ++it) {
+        if (*it == car) {
+            cars.erase(it);
+            found = true;
+            break;
+        }
+    }
+    
+    if (!found) {
+        cout << "Oshibka: mashina s nomerom " << car.getRegNumber() << " ne naydena v taksoparke.\n";
+    } else {
+        cout << "Mashina " << car.getRegNumber() << " udalena iz taksoparka.\n";
+    }
+    
+    return *this;
+}

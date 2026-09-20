@@ -28,7 +28,7 @@ void showOrderMenu() {
                 int p = readPositiveInt("Enter Passengers: ");
                 Order o(f, to, p);
                 cout << "\nOrder created:\n";
-                o.print();
+                cout << o;
                 break;
             }
             case 0: break;
