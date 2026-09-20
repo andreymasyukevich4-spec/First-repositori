@@ -1,23 +1,27 @@
-# TaxiFleet
+# My Lab
+-Andrey Masyukevich Aleksandrovich
+-Variant 17. Taxi Fleet system
+-Need to control cars, orders and assign drivers
+-lab for creating system of taxi fleet, to manage cars and orders
+-LAB1 ADDING CLASSES
+-in first part i introduce classes Car, Order, TaxiFleet.
+-add structure Date and Time 
+-add menu to do some specific task
+-LAB2 FRIEND FUNCTIONS AND OVERLOADS
+-in second part i introduce operator overloading and friend functions
+-add operators ==, <, >, <<, >> for Car and Order
+-add operators +=, -= for TaxiFleet
+-Sonarcloud to check lab
+https://sonarcloud.io/organizations/andreymasyukevich4-spec/projects
+-command for create exe file
 
-Лабораторная работа №1
-
-Тема:Классы и объекты
-Выполнил:Масюкевич Андрей
-Группа:550501
-
-
-Цель работы 
-
-Создание консольного приложения «Таксопарк» для управления заказами и транспортом с использованием ключевых принципов ООП, безопасного ввода данных и контроля версий через Git.
-
-
-Основной функционал
-
-Ручное добавление данных: ввод нового транспорта и заказов через текстовое меню.
-Просмотр списков: вывод текущей информации о транспорте и заказах.
-Автоматическое назначение: поиск транспорта подходящего для перевозки определённого количества пассажиров.
-
-
-Ссылка на SonarCloud: https://sonarcloud.io/organizations/andreymasyukevich4-spec/projects
-Ссылка на GitHub: https://github.com/andreymasyukevich4-spec/First-repositori/commits/main/
+    g++ -std=c++17 -g -I.
+    main.cpp
+    src/Car.cpp
+    src/Order.cpp
+    src/TaxiFleet.cpp
+    menu/cpp/MainMenu.cpp
+    menu/cpp/CarMenu.cpp
+    menu/cpp/OrderMenu.cpp
+    menu/cpp/TaxiFleetMenu.cpp
+    -o program.exe
