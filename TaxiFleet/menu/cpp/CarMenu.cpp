@@ -50,9 +50,9 @@ void showCarMenu() {
                 
                 int y;
                 cout << "Enter Year: ";
-                while (!(cin >> y) || y < 1900 || y > 2026) {
+                while (!(cin >> y) || y < 2000 || y > 2026) {
                     clearInput();
-                    cout << "Invalid year! Try again (1900-2026): ";
+                    cout << "Invalid year! Try again (2000-2026): ";
                 }
                 clearInput();
 
