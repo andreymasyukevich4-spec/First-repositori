@@ -5,6 +5,7 @@
 #include <iostream>
 #include <limits>
 #include <string>
+#include <ctime>
 
 using namespace std;
 
@@ -24,14 +25,18 @@ static string readString(const string& prompt) {
 }
 
 static int readYear(const string& prompt) {
+    time_t timeNow = time(nullptr);
+    tm* now = localtime(&timeNow);
+    int currentYear = now->tm_year + 2000; 
+    
     int y;
     while (true) {
         cout << prompt;
-        if (cin >> y && y >= 2000 && y <= 2026) {
+        if (cin >> y && y >= 2000 && y <= currentYear) {
             clearInput();
             return y;
         }
-        cout << "Oshibka! Vvedite korrektniy god (2000-2026): ";
+        cout << "Oshibka! Vvedite korrektniy god (1900-" << currentYear << "): ";
         clearInput();
     }
 }

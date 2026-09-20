@@ -3,6 +3,7 @@
 #include <iostream>
 #include <limits>
 #include <string>
+#include <ctime>
 
 using namespace std;
 
@@ -48,11 +49,16 @@ void showCarMenu() {
                 string r = readString("Enter Registration Number: ");
                 string m = readString("Enter Model: ");
                 
+                int currentYear;
+                time_t timeNow = time(nullptr);
+                tm* now = localtime(&timeNow);
+                currentYear = now->tm_year + 2000;
+
                 int y;
                 cout << "Enter Year: ";
-                while (!(cin >> y) || y < 2000 || y > 2026) {
+                while (!(cin >> y) || y < 2000 || y > currentYear) {
                     clearInput();
-                    cout << "Invalid year! Try again (2000-2026): ";
+                    cout << "Invalid year! Try again (2000-" << currentYear << "): ";
                 }
                 clearInput();
 
