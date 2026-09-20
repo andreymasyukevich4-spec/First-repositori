@@ -27,14 +27,18 @@ inline string readString(const string& prompt) {
 
 inline int getCurrentYear() {
     time_t t = time(nullptr);
-    tm timeInfo{};  
-
+    tm timeInfo{};
+    
     #ifdef _WIN32
-        localtime_s(&timeInfo, &t);
+        if (localtime_s(&timeInfo, &t) != 0) {
+            return MIN_YEAR;
+        }
     #else
-        localtime_r(&t, &timeInfo);
+        if (localtime_r(&t, &timeInfo) == nullptr) {
+            return MIN_YEAR;
+        }
     #endif
-
+    
     return timeInfo.tm_year + MAX_YEAR_OFFSET;
 }
 
