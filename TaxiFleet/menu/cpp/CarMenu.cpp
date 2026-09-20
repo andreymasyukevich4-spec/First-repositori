@@ -1,25 +1,9 @@
 #include "../header/CarMenu.h"
 #include "../../include/Car.h"
+#include "../../include/Utils.h"
 #include <iostream>
-#include <limits>
-#include <string>
-#include <ctime>
 
 using namespace std;
-
-static void clearInput() {
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-}
-
-static string readString(const string& prompt) {
-    string result;
-    cout << prompt;
-    while (true) {
-        getline(cin, result);
-        if (!result.empty()) return result;
-    }
-}
 
 void showCarMenu() {
     int choice;
@@ -48,40 +32,17 @@ void showCarMenu() {
                 cout << "\n!Creating custom car!\n";
                 string r = readString("Enter Registration Number: ");
                 string m = readString("Enter Model: ");
-                
-                int currentYear;
-                time_t timeNow = time(nullptr);
-                tm* now = localtime(&timeNow);
-                currentYear = now->tm_year + 1900;
-
-                int y;
-                cout << "Enter Year: ";
-                while (!(cin >> y) || y < 2000 || y > currentYear) {
-                    clearInput();
-                    cout << "Invalid year! Try again (2000-" << currentYear << "): ";
-                }
-                clearInput();
-
-                int s;
-                cout << "Enter Seats: ";
-                while (!(cin >> s) || s <= 0) {
-                    clearInput();
-                    cout << "Invalid seats! Try again (>0): ";
-                }
-                clearInput();
-
+                int y = readYear("Enter Year: ");
+                int s = readPositiveInt("Enter Seats: ");
                 string t = readString("Enter Type: ");
                 string d = readString("Enter Driver Name: ");
-
                 Car c(r, m, y, s, t, d);
                 cout << "\nCar created:\n";
                 c.print();
                 break;
             }
-            case 0:
-                break;
-            default:
-                cout << "Invalid choice!\n";
+            case 0: break;
+            default: cout << "Invalid choice!\n";
         }
     } while (choice != 0);
 }

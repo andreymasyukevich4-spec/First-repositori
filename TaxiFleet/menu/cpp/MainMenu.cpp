@@ -1,7 +1,7 @@
 #include "../header/MainMenu.h"
 #include "../header/TaxiFleetMenu.h"
+#include "../../include/Utils.h"
 #include <iostream>
-#include <limits>
 
 using namespace std;
 
@@ -14,21 +14,16 @@ void showMainMenu(TaxiFleet& fleet) {
         cout << "Choice: ";
 
         if (!(cin >> choice)) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            clearInput();
             cout << "Invalid input! Please enter a number.\n";
             continue;
         }
+        clearInput();
 
         switch (choice) {
-            case 1:
-                showTaxiFleetMenu(fleet);
-                break;
-            case 0:
-                cout << "Exiting...\n";
-                break;
-            default:
-                cout << "Invalid choice! Try again.\n";
+            case 1: showTaxiFleetMenu(fleet); break;
+            case 0: cout << "Exiting...\n"; break;
+            default: cout << "Invalid choice! Try again.\n";
         }
     } while (choice != 0);
 }
