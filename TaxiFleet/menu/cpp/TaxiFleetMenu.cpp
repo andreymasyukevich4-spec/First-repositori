@@ -136,6 +136,52 @@ void removeCarMenu(TaxiFleet& fleet) {
     fleet -= carToRemove;
 }
 
+void showOperatorsDemo(TaxiFleet& fleet) {
+    cout << "\n!DEMONSTRACIA OPERATOROV!\n";
+    
+    if (fleet.getCars().size() < 2) {
+        cout << "Nuzhno minimum 2 mashiny dlya demonstratsii.\n";
+        return;
+    }
+
+    cout << "\n1. Vivod mashin cherez operator <<:\n";
+    cout << fleet.getCars()[0];
+    cout << fleet.getCars()[1];
+    
+    cout << "\n2. Sravnenie mashin operatorami ==, <, >:\n";
+    if (fleet.getCars()[0] == fleet.getCars()[1]) {
+        cout << "Mashiny odinakovy po nomeru.\n";
+    } else {
+        cout << "Mashiny raznye po nomeru.\n";
+    }
+    
+    if (fleet.getCars()[0] < fleet.getCars()[1]) {
+        cout << "Pervaya mashina menshe po kolichestvu mest.\n";
+    } else {
+        cout << "Pervaya mashina bolshe ili ravna po kolichestvu mest.\n";
+    }
+
+    if (fleet.getCars()[0] > fleet.getCars()[1]) {
+        cout << "Pervaya mashina bolshe po kolichestvu mest.\n";
+    } else {
+        cout << "Pervaya mashina menshe ili ravna po kolichestvu mest.\n";
+    }
+    
+    cout << "\n3. Proverka podhoda mashiny dlya zakaza (druzh functiya):\n";
+    if (isSuitableForOrder(fleet.getCars()[0], 3)) {
+        cout << "Mashina 1 podhodit dlya 3 passazhirov.\n";
+    } else {
+        cout << "Mashina 1 NE podhodit dlya 3 passazhirov.\n";
+    }
+    
+    cout << "\n4. Udalenie mashiny cherez operator -= (sozdanie vremennoy):\n";
+    Car tempCar("0000 XX-0", "", 0, 0, "", "");
+    fleet -= tempCar;
+    cout << "Popytka udalit nesushestvuyushuyu mashinu (dolzhno byt soobshenie ob oshibke).\n";
+    
+    cout << "\n!KONEC DEMONSTRACII!\n";
+}
+
 void showTaxiFleetMenu(TaxiFleet& fleet) {
     int choice;
     do {
@@ -149,6 +195,7 @@ void showTaxiFleetMenu(TaxiFleet& fleet) {
         cout << "7. Izmenit harakteristiki mashiny\n";
         cout << "8. Izmenit harakteristiki zakaza\n";
         cout << "9. Udalit mashinu iz taksoparka\n";
+        cout << "10. Demonstratia operatorov\n";
         cout << "0. Nazad v Main Menu\n";
         cout << "Choice: ";
         
@@ -169,6 +216,7 @@ void showTaxiFleetMenu(TaxiFleet& fleet) {
             case 7: editCarMenu(fleet); break;
             case 8: editOrderMenu(fleet); break;
             case 9: removeCarMenu(fleet); break;
+            case 10: showOperatorsDemo(fleet); break;
             case 0: cout << "Vozvrashchenie v Main Menu...\n"; break;
             default: cout << "Neverniy vibor! Poprobuyte snova.\n";
         }
