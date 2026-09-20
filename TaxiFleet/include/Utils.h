@@ -28,6 +28,7 @@ inline string readString(const string& prompt) {
 inline int readYear(const string& prompt) {
     time_t t = time(nullptr);
     tm* now = localtime(&t);
+if (now == nullptr) return MIN_YEAR; 
     int currentYear = now->tm_year + MAX_YEAR_OFFSET;
 
     int y;
