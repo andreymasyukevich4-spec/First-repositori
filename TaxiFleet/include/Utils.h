@@ -25,11 +25,21 @@ inline string readString(const string& prompt) {
     }
 }
 
-inline int readYear(const string& prompt) {
+inline int getCurrentYear() {
     time_t t = time(nullptr);
-    tm* now = localtime(&t);
-if (now == nullptr) return MIN_YEAR; 
-    int currentYear = now->tm_year + MAX_YEAR_OFFSET;
+    tm timeInfo;
+    
+    #ifdef _WIN32
+        localtime_s(&timeInfo, &t);
+    #else
+        localtime_r(&t, &timeInfo);
+    #endif
+    
+    return timeInfo.tm_year + MAX_YEAR_OFFSET;
+}
+
+inline int readYear(const string& prompt) {
+    int currentYear = getCurrentYear();
 
     int y;
     while (true) {
