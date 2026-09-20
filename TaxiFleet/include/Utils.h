@@ -31,9 +31,7 @@ inline int getCurrentYear() {
     
     #ifdef _WIN32
         localtime_s(&timeInfo, &t);
-    #else
-        localtime_r(&t, &timeInfo);
-    #endif
+        #endif
     
     return timeInfo.tm_year + MAX_YEAR_OFFSET;
 }
