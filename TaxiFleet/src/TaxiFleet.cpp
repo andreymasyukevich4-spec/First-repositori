@@ -80,5 +80,3 @@ void TaxiFleet::printAllOrders() const {
     }
 }
 
-vector<Car>& TaxiFleet::getCars() { return cars; }
-vector<Order>& TaxiFleet::getOrders() { return orders; }
