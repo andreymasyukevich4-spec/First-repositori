@@ -1,7 +1,7 @@
 #ifndef MAINMENU_H
 #define MAINMENU_H
 
-class TaxiFleet;
+#include "../../include/TaxiFleet.h"
 
 void showMainMenu(TaxiFleet& fleet);
 
