@@ -1,6 +1,6 @@
 #ifndef CAR_H
 #define CAR_H
-#pragma once
+
 #include <string>
 #include <iostream>
 
@@ -33,8 +33,6 @@ public:
     string getType() const;
     string getDriverName() const;
 
-    void print() const;
-
     bool operator==(const Car& other) const;
     bool operator<(const Car& other) const;
     bool operator>(const Car& other) const;
@@ -42,7 +40,6 @@ public:
     friend ostream& operator<<(ostream& os, const Car& car);
     friend istream& operator>>(istream& is, Car& car);
     friend bool isSuitableForOrder(const Car& car, int passengers);
-
 };
 
 #endif

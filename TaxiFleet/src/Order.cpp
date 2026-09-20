@@ -19,11 +19,11 @@ bool Order::operator==(const Order& other) const{
     return fromAddress == other.fromAddress;
 }
 
-bool Order::operator==(const Order& other) const{
+bool Order::operator<(const Order& other) const{
     return passengers < other.passengers;
 }
 
-bool Order::operator==(const Order& other) const{
+bool Order::operator>(const Order& other) const{
     return passengers > other.passengers;
 }
 ostream& operator<<(ostream& os, const Order& order) {

@@ -25,11 +25,11 @@ bool Car::operator==(const Car& other) const{
     return regNumber == other.regNumber;
 }
 
-bool Car::operator==(const Car& other) const{
+bool Car::operator<(const Car& other) const{
     return seats < other.seats;
 }
 
-bool Car::operator==(const Car& other) const{
+bool Car::operator>(const Car& other) const{
     return seats > other.seats;
 }
 

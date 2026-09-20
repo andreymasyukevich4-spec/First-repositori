@@ -1,5 +1,5 @@
-#include "include/TaxiFleet.h"
-#include "menu/header/MainMenu.h"
+#include "../../include/TaxiFleet.h"
+#include "../header/MainMenu.h"
 #include <iostream>
 
 using namespace std;
@@ -15,7 +15,7 @@ int main() {
     fleet.addOrder(Order("Gagarina 7", "Pushkina 22", 6));
     fleet.addOrder(Order("Sovetskaya 3", "Kirova 88", 9));
 
-    cout << "\n=== DEMONSTRACIA OPERATOROV ===\n";
+    cout << "\n!DEMONSTRACIA OPERATOROV!\n";
     
     cout << "\n1. Vivod mashin cherez operator <<:\n";
     cout << fleet.getCars()[0];
@@ -49,7 +49,7 @@ int main() {
     cout << "\n5. Popytka udalit nesushestvuyushuyu mashinu:\n";
     fleet -= Car("0000 XX-0", "", 0, 0, "", "");
     
-    cout << "\n=== KONEC DEMONSTRACII ===\n";
+    cout << "\n!KONEC DEMONSTRACII!\n";
 
     showMainMenu(fleet);
 

@@ -1,5 +1,6 @@
 #ifndef ORDER_H
 #define ORDER_H
+
 #include <string>
 #include <iostream>
 #include "Car.h"
@@ -30,7 +31,7 @@ public:
 
     friend ostream& operator<<(ostream& os, const Order& order);
     friend istream& operator>>(istream& is, Order& order);
-    friend bool sSuitableForOrder(const Order& order, const Car& car);
+    friend bool isOrderForCar(const Order& order, const Car& car);
 };
 
 #endif

@@ -80,8 +80,6 @@ void TaxiFleet::printAllOrders() const {
     }
 }
 
-vector<Car>& TaxiFleet::getCars() { return cars; }
-vector<Order>& TaxiFleet::getOrders() { return orders; }
 
 TaxiFleet& TaxiFleet::operator+=(const Car& car) {
     cars.push_back(car);

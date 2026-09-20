@@ -15,6 +15,7 @@ private:
 
 public:
     TaxiFleet();
+    
     void addCar(const Car& car);
     void addOrder(const Order& order);
     
@@ -28,8 +29,8 @@ public:
     vector<Car>& getCars() { return cars; }
     vector<Order>& getOrders() { return orders; }
 
-    TaxiFleet* operator+=(const Car& car);
-    TaxiFleet* operator-=(const Car& car);
+    TaxiFleet& operator+=(const Car& car);
+    TaxiFleet& operator-=(const Car& car);
 };
 
 #endif
