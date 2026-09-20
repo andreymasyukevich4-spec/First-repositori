@@ -52,7 +52,7 @@ void showCarMenu() {
                 int currentYear;
                 time_t timeNow = time(nullptr);
                 tm* now = localtime(&timeNow);
-                currentYear = now->tm_year + 2000;
+                currentYear = now->tm_year + 1900;
 
                 int y;
                 cout << "Enter Year: ";

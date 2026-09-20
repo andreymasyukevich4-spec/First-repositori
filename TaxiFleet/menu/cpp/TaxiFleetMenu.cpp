@@ -27,7 +27,7 @@ static string readString(const string& prompt) {
 static int readYear(const string& prompt) {
     time_t timeNow = time(nullptr);
     tm* now = localtime(&timeNow);
-    int currentYear = now->tm_year + 2000; 
+    int currentYear = now->tm_year + 1900; 
     
     int y;
     while (true) {
@@ -36,7 +36,7 @@ static int readYear(const string& prompt) {
             clearInput();
             return y;
         }
-        cout << "Oshibka! Vvedite korrektniy god (1900-" << currentYear << "): ";
+        cout << "Oshibka! Vvedite korrektniy god (2000-" << currentYear << "): ";
         clearInput();
     }
 }
