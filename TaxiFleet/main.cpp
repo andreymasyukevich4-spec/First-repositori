@@ -15,5 +15,7 @@ int main() {
     fleet.addOrder(Order("Gagarina 7", "Pushkina 22", 6));
     fleet.addOrder(Order("Sovetskaya 3", "Kirova 88", 9));
 
-       return 0;
+    showMainMenu(fleet);
+
+ return 0;
 }
