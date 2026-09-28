@@ -157,14 +157,10 @@ void showOperatorsDemo(TaxiFleet& fleet) {
     
     if (fleet.getCars()[0] < fleet.getCars()[1]) {
         cout << "Pervaya mashina menshe po kolichestvu mest.\n";
-    } else {
-        cout << "Pervaya mashina bolshe ili ravna po kolichestvu mest.\n";
-    }
-
-    if (fleet.getCars()[0] > fleet.getCars()[1]) {
+    } else if (fleet.getCars()[0] > fleet.getCars()[1]) {
         cout << "Pervaya mashina bolshe po kolichestvu mest.\n";
     } else {
-        cout << "Pervaya mashina menshe ili ravna po kolichestvu mest.\n";
+        cout << "Mashiny odinakovy po kolichestvu mest.\n";
     }
     
     cout << "\n3. Proverka podhoda mashiny dlya zakaza (druzh functiya):\n";
@@ -174,10 +170,32 @@ void showOperatorsDemo(TaxiFleet& fleet) {
         cout << "Mashina 1 NE podhodit dlya 3 passazhirov.\n";
     }
     
-    cout << "\n4. Udalenie mashiny cherez operator -= (sozdanie vremennoy):\n";
-    Car tempCar("0000 XX-0", "", 0, 0, "", "");
-    fleet -= tempCar;
-    cout << "Popytka udalit nesushestvuyushuyu mashinu (dolzhno byt soobshenie ob oshibke).\n";
+    cout << "\n4. Demonstratia operatora -= (udalenie mashiny):\n";
+    cout << "Tekushiy spisok mashin:\n";
+    for (size_t i = 0; i < fleet.getCars().size(); ++i) {
+        cout << i << ". " << fleet.getCars()[i].getModel() 
+             << " (" << fleet.getCars()[i].getRegNumber() << ")\n";
+    }
+    
+    int idx = readIndex("Viberite index mashiny dlya udaleniya: ", fleet.getCars().size());
+    Car carToRemove = fleet.getCars()[idx];
+    
+    cout << "\nUdalaem mashinu: " << carToRemove.getModel() << "...\n";
+    fleet -= carToRemove;
+    
+    cout << "\nSpisok mashin posle udaleniya:\n";
+    if (fleet.getCars().empty()) {
+        cout << "Spisok pust.\n";
+    } else {
+        for (size_t i = 0; i < fleet.getCars().size(); ++i) {
+            cout << i << ". " << fleet.getCars()[i].getModel() 
+                 << " (" << fleet.getCars()[i].getRegNumber() << ")\n";
+        }
+    }
+    
+    cout << "\n5. Popytka udalit nesushestvuyushuyu mashinu:\n";
+    Car fakeCar("0000 XX-0", "Fake", 0, 0, "none", "none");
+    fleet -= fakeCar;
     
     cout << "\n!KONEC DEMONSTRACII!\n";
 }
