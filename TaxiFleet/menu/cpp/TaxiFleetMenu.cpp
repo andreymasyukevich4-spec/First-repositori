@@ -287,6 +287,134 @@ void showOperatorsDemo(TaxiFleet& fleet) {
     cout << "\n!KONEC DEMONSTRACII!\n";
 }
 
+void showInheritedFields(TaxiFleet& fleet) {
+    cout << "\n!TOLKO UNASLEDOVANNIE POLYA!\n";
+    if (fleet.getCars().empty()) {
+        cout << "Net mashin.\n";
+        return;
+    }
+    for (size_t i = 0; i < fleet.getCars().size(); ++i) {
+        Car* car = fleet.getCars()[i];
+        cout << "--- Mashina " << i << " ---\n";
+        cout << "Reg. nomer: " << car->getRegNumber() << "\n";
+        cout << "Model: " << car->getModel() << "\n";
+        cout << "God: " << car->getYear() << "\n";
+        cout << "Mest: " << car->getSeats() << "\n";
+        cout << "Voditel: " << car->getDriverName() << "\n";
+    }
+}
+
+void showSpecificFields(TaxiFleet& fleet) {
+    cout << "\n!SPETS. POLYA PROIZVODNYH TIPOV!\n";
+    if (fleet.getCars().empty()) {
+        cout << "Net mashin.\n";
+        return;
+    }
+    for (size_t i = 0; i < fleet.getCars().size(); ++i) {
+        Car* car = fleet.getCars()[i];
+        string type = car->getType();
+        cout << "--- " << type << " ---\n";
+        if (type == "Sedan") {
+            Sedan* s = dynamic_cast<Sedan*>(car);
+            if (s) {
+                cout << "Detskoe kreslo: " << (s->getHasChildSeat() ? "est" : "net") << "\n";
+            }
+        } else if (type == "Minivan") {
+            Minivan* m = dynamic_cast<Minivan*>(car);
+            if (m) {
+                cout << "Maks. bagazh: " << m->getMaxLuggage() << " l\n";
+            }
+        } else if (type == "Electric") {
+            ElectricCar* e = dynamic_cast<ElectricCar*>(car);
+            if (e) {
+                cout << "Emkost batarei: " << e->getBatteryCapacity() << " kWh\n";
+                cout << "Zaryad: " << e->getChargeLevel() << "%\n";
+                cout << "Zapas hoda: " << e->calculateRange() << " km\n";
+            }
+        }
+    }
+}
+
+void editCommonField(TaxiFleet& fleet) {
+    if (fleet.getCars().empty()) {
+        cout << "Net mashin.\n";
+        return;
+    }
+    cout << "\n!IZMENIT OBSHEE POLE CHEREZ UNASLEDOVANNIY SETTER!\n";
+    for (size_t i = 0; i < fleet.getCars().size(); ++i) {
+        cout << i << ". " << fleet.getCars()[i]->getModel()
+             << " (" << fleet.getCars()[i]->getRegNumber() << ")\n";
+    }
+    int idx = readIndex("Viberite index mashiny: ", fleet.getCars().size());
+    Car* car = fleet.getCars()[idx];
+
+    cout << "\nChto izmenit?\n";
+    cout << "1. Model\n";
+    cout << "2. Voditel\n";
+    cout << "3. God\n";
+    cout << "Choice: ";
+    int sub;
+    cin >> sub;
+    clearInput();
+
+    if (sub == 1) {
+        string model = readString("Enter new model: ");
+        car->setModel(model);
+        cout << "Model obnovlena!\n";
+    } else if (sub == 2) {
+        string driver = readString("Enter new driver: ");
+        car->setDriverName(driver);
+        cout << "Voditel obnovlen!\n";
+    } else if (sub == 3) {
+        int year = readYear("Enter new year: ");
+        car->setYear(year);
+        cout << "God obnovlen!\n";
+    } else {
+        cout << "Neverniy vibor!\n";
+    }
+}
+
+void showCommonFieldsViaGetter(TaxiFleet& fleet) {
+    cout << "\n!OBSHIE POLYA CHEREZ UNASLEDOVANNIY GETTER!\n";
+    if (fleet.getCars().empty()) {
+        cout << "Net mashin.\n";
+        return;
+    }
+    for (size_t i = 0; i < fleet.getCars().size(); ++i) {
+        Car* car = fleet.getCars()[i];
+        cout << car->getModel() << "  " << car->getDriverName() << "\n";
+    }
+}
+
+void showInheritanceDemo(TaxiFleet& fleet) {
+    int choice;
+    do {
+        cout << "\n!DEMONSTRATSIA NASLEDOVANIA!\n";
+        cout << "1. Pokazat tolko unasledovannie polya\n";
+        cout << "2. Pokazat spets. polya proizvodnyh tipov\n";
+        cout << "3. Izmenit obshee pole cherez unasledovanniy setter\n";
+        cout << "4. Pokazat obshie polya cherez unasledovanniy getter\n";
+        cout << "0. Nazad\n";
+        cout << "Choice: ";
+
+        if (!(cin >> choice)) {
+            clearInput();
+            cout << "Oshibka vvoda!\n";
+            continue;
+        }
+        clearInput();
+
+        switch (choice) {
+            case 1: showInheritedFields(fleet); break;
+            case 2: showSpecificFields(fleet); break;
+            case 3: editCommonField(fleet); break;
+            case 4: showCommonFieldsViaGetter(fleet); break;
+            case 0: break;
+            default: cout << "Neverniy vibor!\n";
+        }
+    } while (choice != 0);
+}
+
 void showTaxiFleetMenu(TaxiFleet& fleet) {
     int choice;
     do {
@@ -301,6 +429,7 @@ void showTaxiFleetMenu(TaxiFleet& fleet) {
         cout << "8. Izmenit harakteristiki zakaza\n";
         cout << "9. Udalit mashinu iz taksoparka\n";
         cout << "10. Demonstratia operatorov\n";
+        cout << "11. Demonstratsia nasledovania\n";
         cout << "0. Nazad v Main Menu\n";
         cout << "Choice: ";
 
@@ -322,6 +451,7 @@ void showTaxiFleetMenu(TaxiFleet& fleet) {
             case 8: editOrderMenu(fleet); break;
             case 9: removeCarMenu(fleet); break;
             case 10: showOperatorsDemo(fleet); break;
+            case 11: showInheritanceDemo(fleet); break;
             case 0: cout << "Vozvrashchenie v Main Menu...\n"; break;
             default: cout << "Neverniy vibor! Poprobuyte snova.\n";
         }
