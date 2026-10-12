@@ -5,15 +5,15 @@
 
 class Minivan : public PassengerCar {
 private:
-    int maxLuggage;
+    int passengerRowsCount;
 
 public:
     Minivan();
     Minivan(const string& regNumber, const string& model, int year, int seats,
-            const string& driverName, double fuelConsumption, int maxLuggage);
+            const string& driverName, double fuelConsumption, int passengerRowsCount);
 
-    void setMaxLuggage(int value);
-    int getMaxLuggage() const;
+    void setPassengerRowsCount(int value);
+    int getPassengerRowsCount() const;
 
     virtual void print(ostream& os) const override;
     virtual void readFrom(istream& is) override;

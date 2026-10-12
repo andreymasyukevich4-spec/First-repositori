@@ -5,15 +5,15 @@
 
 class Sedan : public PassengerCar {
 private:
-    bool hasChildSeat;
+    bool hasSkiHatch;
 
 public:
     Sedan();
     Sedan(const string& regNumber, const string& model, int year, int seats,
-          const string& driverName, double fuelConsumption, bool hasChildSeat);
+          const string& driverName, double fuelConsumption, bool hasSkiHatch);
 
-    void setHasChildSeat(bool value);
-    bool getHasChildSeat() const;
+    void setHasSkiHatch(bool value);
+    bool getHasSkiHatch() const;
 
     virtual void print(ostream& os) const override;
     virtual void readFrom(istream& is) override;
