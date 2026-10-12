@@ -70,6 +70,45 @@ inline int readPositiveInt(const string& prompt) {
     }
 }
 
+inline int readBool(const string& prompt) {
+    int val;
+    while (true) {
+        cout << prompt;
+        if (cin >> val && (val == 0 || val == 1)) {
+            clearInput();
+            return val;
+        }
+        cout << "Oshibka! Vvedite 0 ili 1: ";
+        clearInput();
+    }
+}
+
+inline int readRowsCount(const string& prompt) {
+    int val;
+    while (true) {
+        cout << prompt;
+        if (cin >> val && (val == 2 || val == 3)) {
+            clearInput();
+            return val;
+        }
+        cout << "Oshibka! Vvedite 2 ili 3: ";
+        clearInput();
+    }
+}
+
+inline int readPercent(const string& prompt) {
+    int val;
+    while (true) {
+        cout << prompt;
+        if (cin >> val && val >= 0 && val <= 100) {
+            clearInput();
+            return val;
+        }
+        cout << "Oshibka! Vvedite chislo ot 0 do 100: ";
+        clearInput();
+    }
+}
+
 inline int readIndex(const string& prompt, int maxSize) {
     int idx;
     while (true) {
