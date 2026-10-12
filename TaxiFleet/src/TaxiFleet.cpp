@@ -1,4 +1,7 @@
 #include "../include/TaxiFleet.h"
+#include "../include/Sedan.h"
+#include "../include/Minivan.h"
+#include "../include/ElectricCar.h"
 #include <iostream>
 
 using namespace std;
@@ -12,8 +15,19 @@ TaxiFleet::~TaxiFleet() {
     cars.clear();
 }
 
-void TaxiFleet::addCar(Car* car) {
-    cars.push_back(car);
+void TaxiFleet::createSedan(const string& regNumber, const string& model, int year, int seats,
+                             const string& driverName, double fuelConsumption, bool hasSkiHatch) {
+    cars.push_back(new Sedan(regNumber, model, year, seats, driverName, fuelConsumption, hasSkiHatch));
+}
+
+void TaxiFleet::createMinivan(const string& regNumber, const string& model, int year, int seats,
+                               const string& driverName, double fuelConsumption, int passengerRowsCount) {
+    cars.push_back(new Minivan(regNumber, model, year, seats, driverName, fuelConsumption, passengerRowsCount));
+}
+
+void TaxiFleet::createElectricCar(const string& regNumber, const string& model, int year, int seats,
+                                   const string& driverName, double batteryCapacity, int chargeLevel) {
+    cars.push_back(new ElectricCar(regNumber, model, year, seats, driverName, batteryCapacity, chargeLevel));
 }
 
 void TaxiFleet::addOrder(const Order& order) {

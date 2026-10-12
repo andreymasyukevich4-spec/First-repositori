@@ -17,7 +17,13 @@ public:
     TaxiFleet();
     ~TaxiFleet();
 
-    void addCar(Car* car);
+    void createSedan(const string& regNumber, const string& model, int year, int seats,
+                     const string& driverName, double fuelConsumption, bool hasSkiHatch);
+    void createMinivan(const string& regNumber, const string& model, int year, int seats,
+                       const string& driverName, double fuelConsumption, int passengerRowsCount);
+    void createElectricCar(const string& regNumber, const string& model, int year, int seats,
+                           const string& driverName, double batteryCapacity, int chargeLevel);
+
     void addOrder(const Order& order);
 
     void checkOrderForAllCars(int orderIndex);

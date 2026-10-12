@@ -19,7 +19,7 @@ void addSedanMenu(TaxiFleet& fleet) {
     string d = readString("Enter Driver Name: ");
     double fuel = readPositiveInt("Enter Fuel Consumption (l/100km): ");
     int ski = readBool("Has ski hatch? (1-yes, 0-no): ");
-    fleet += new Sedan(r, m, y, s, d, fuel, ski == 1);
+    fleet.createSedan(r, m, y, s, d, fuel, ski == 1);
     cout << "Sedan uspeshno dobavlen!\n";
 }
 
@@ -32,7 +32,7 @@ void addMinivanMenu(TaxiFleet& fleet) {
     string d = readString("Enter Driver Name: ");
     double fuel = readPositiveInt("Enter Fuel Consumption (l/100km): ");
     int rows = readRowsCount("Enter Passenger Rows Count (2 or 3): ");
-    fleet += new Minivan(r, m, y, s, d, fuel, rows);
+    fleet.createMinivan(r, m, y, s, d, fuel, rows);
     cout << "Minivan uspeshno dobavlen!\n";
 }
 
@@ -45,7 +45,7 @@ void addElectricCarMenu(TaxiFleet& fleet) {
     string d = readString("Enter Driver Name: ");
     double battery = readPositiveInt("Enter Battery Capacity (kWh): ");
     int charge = readPositiveInt("Enter Charge Level (%): ");
-    fleet += new ElectricCar(r, m, y, s, d, battery, charge);
+    fleet.createElectricCar(r, m, y, s, d, battery, charge);
     cout << "ElectricCar uspeshno dobavlen!\n";
 }
 
