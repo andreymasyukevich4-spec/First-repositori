@@ -17,8 +17,7 @@ LAB3 INHERITANCE
 in third part i introduce class hierarchy
 add base class Car, intermediate class PassengerCar
 add derived classes Sedan, Minivan, ElectricCar
-add virtual methods print, readFrom, getType
-use polymorphism
+add virtual methods print, readFrom, 
 Sonarcloud to check lab
 !https://sonarcloud.io/organizations/andreymasyukevich4-spec/projects
 
