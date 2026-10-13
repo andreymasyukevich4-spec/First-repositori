@@ -31,8 +31,8 @@ void addMinivanMenu(TaxiFleet& fleet) {
     int s = readPositiveInt("Enter Seats: ");
     string d = readString("Enter Driver Name: ");
     double fuel = readPositiveInt("Enter Fuel Consumption (l/100km): ");
-    int rows = readRowsCount("Enter Passenger Rows Count (2 or 3): ");
-    fleet.createMinivan(r, m, y, s, d, fuel, rows);
+    int thirdRow = readBool("Has third row? (1-yes, 0-no): ");
+    fleet.createMinivan(r, m, y, s, d, fuel, thirdRow == 1);
     cout << "Minivan uspeshno dobavlen!\n";
 }
 
@@ -149,9 +149,9 @@ void editCarMenu(TaxiFleet& fleet) {
 } else if (type == "Minivan") {
     Minivan* m = dynamic_cast<Minivan*>(car);
     if (m) {
-        int val = readRowsCount("Enter new passenger rows count (2 or 3): ");
-        m->setPassengerRowsCount(val);
-        cout << "Kolichestvo ryadov obnovleno!\n";
+        int val = readBool("Has third row? (1-yes, 0-no): ");
+        m->setHasThirdRow(val == 1);
+        cout << "Tretiy ryad obnovlen!\n";
     }
 } else if (type == "Electric") {
     ElectricCar* e = dynamic_cast<ElectricCar*>(car);
@@ -316,11 +316,11 @@ void showSpecificFields(TaxiFleet& fleet) {
                 cout << "Lyuk dlya lyzh: " << (s->getHasSkiHatch() ? "est" : "net") << "\n";
             }
         } else if (type == "Minivan") {
-            Minivan* m = dynamic_cast<Minivan*>(car);
-            if (m) {
-                cout << "Ryadov sideniy: " << m->getPassengerRowsCount() << "\n";
-            }
-        } else if (type == "Electric") {
+        Minivan* m = dynamic_cast<Minivan*>(car);
+        if (m) {
+            cout << "Tretiy ryad sideniy: " << (m->getHasThirdRow() ? "est" : "net") << "\n";
+        }
+         } else if (type == "Electric") {
             ElectricCar* e = dynamic_cast<ElectricCar*>(car);
             if (e) {
                 cout << "Emkost batarei: " << e->getBatteryCapacity() << " kWh\n";

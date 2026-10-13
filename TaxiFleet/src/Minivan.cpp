@@ -2,25 +2,25 @@
 
 using namespace std;
 
-Minivan::Minivan() : PassengerCar(), passengerRowsCount(2) {}
+Minivan::Minivan() : PassengerCar(), hasThirdRow(false) {}
 
 Minivan::Minivan(const string& regNumber, const string& model, int year, int seats,
-                 const string& driverName, double fuelConsumption, int passengerRowsCount)
+                 const string& driverName, double fuelConsumption, bool hasThirdRow)
     : PassengerCar(regNumber, model, year, seats, driverName, fuelConsumption),
-      passengerRowsCount(passengerRowsCount) {}
+      hasThirdRow(hasThirdRow) {}
 
-void Minivan::setPassengerRowsCount(int value) { passengerRowsCount = value; }
-int Minivan::getPassengerRowsCount() const { return passengerRowsCount; }
+void Minivan::setHasThirdRow(bool value) { hasThirdRow = value; }
+bool Minivan::getHasThirdRow() const { return hasThirdRow; }
 
 void Minivan::print(ostream& os) const {
     os << "[MINIVAN]\n";
     PassengerCar::print(os);
-    os << "Ryadov sideniy: " << passengerRowsCount << "\n";
+    os << "Tretiy ryad sideniy: " << (hasThirdRow ? "est" : "net") << "\n";
 }
 
 void Minivan::readFrom(istream& is) {
     PassengerCar::readFrom(is);
-    is >> passengerRowsCount;
+    is >> hasThirdRow;
 }
 
 string Minivan::getType() const { return "Minivan"; }

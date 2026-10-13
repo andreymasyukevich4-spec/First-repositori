@@ -21,8 +21,8 @@ void TaxiFleet::createSedan(const string& regNumber, const string& model, int ye
 }
 
 void TaxiFleet::createMinivan(const string& regNumber, const string& model, int year, int seats,
-                               const string& driverName, double fuelConsumption, int passengerRowsCount) {
-    cars.push_back(new Minivan(regNumber, model, year, seats, driverName, fuelConsumption, passengerRowsCount));
+                               const string& driverName, double fuelConsumption, bool hasThirdRow) {
+    cars.push_back(new Minivan(regNumber, model, year, seats, driverName, fuelConsumption, hasThirdRow));
 }
 
 void TaxiFleet::createElectricCar(const string& regNumber, const string& model, int year, int seats,

@@ -20,7 +20,7 @@ public:
     void createSedan(const string& regNumber, const string& model, int year, int seats,
                      const string& driverName, double fuelConsumption, bool hasSkiHatch);
     void createMinivan(const string& regNumber, const string& model, int year, int seats,
-                       const string& driverName, double fuelConsumption, int passengerRowsCount);
+                       const string& driverName, double fuelConsumption, bool hasThirdRow);
     void createElectricCar(const string& regNumber, const string& model, int year, int seats,
                            const string& driverName, double batteryCapacity, int chargeLevel);
 
