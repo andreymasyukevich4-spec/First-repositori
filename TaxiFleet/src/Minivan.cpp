@@ -15,7 +15,7 @@ bool Minivan::getHasThirdRow() const { return hasThirdRow; }
 void Minivan::print(ostream& os) const {
     os << "[MINIVAN]\n";
     PassengerCar::print(os);
-    os << "Tretiy ryad sideniy: " << (hasThirdRow ? "est" : "net") << "\n";
+    os << "Third row: " << (hasThirdRow ? "yes" : "no") << "\n";
 }
 
 void Minivan::readFrom(istream& is) {
@@ -23,8 +23,8 @@ void Minivan::readFrom(istream& is) {
     is >> hasThirdRow;
 }
 
+string Minivan::getType() const { return "Minivan"; }
+
 double Minivan::calculateCostPerKm() const {
     return PassengerCar::calculateCostPerKm() + 0.5;
 }
-
-string Minivan::getType() const { return "Minivan"; }

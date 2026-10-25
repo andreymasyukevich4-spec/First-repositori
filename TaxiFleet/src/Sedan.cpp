@@ -15,7 +15,7 @@ bool Sedan::getHasSkiHatch() const { return hasSkiHatch; }
 void Sedan::print(ostream& os) const {
     os << "[SEDAN]\n";
     PassengerCar::print(os);
-    os << "Lyuk dlya lyzh: " << (hasSkiHatch ? "est" : "net") << "\n";
+    os << "Ski hatch: " << (hasSkiHatch ? "yes" : "no") << "\n";
 }
 
 void Sedan::readFrom(istream& is) {
@@ -23,8 +23,8 @@ void Sedan::readFrom(istream& is) {
     is >> hasSkiHatch;
 }
 
+string Sedan::getType() const { return "Sedan"; }
+
 double Sedan::calculateCostPerKm() const {
     return PassengerCar::calculateCostPerKm();
 }
-
-string Sedan::getType() const { return "Sedan"; }

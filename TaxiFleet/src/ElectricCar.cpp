@@ -20,21 +20,22 @@ double ElectricCar::calculateRange() const {
 
 void ElectricCar::print(ostream& os) const {
     os << "[ELECTRIC]\n";
-    os << "Reg. nomer: " << regNumber << "\n";
+    os << "Reg. number: " << regNumber << "\n";
     os << "Model: " << model << "\n";
-    os << "God: " << year << "\n";
-    os << "Mest: " << seats << "\n";
-    os << "Voditel: " << driverName << "\n";
-    os << "Emkost batarei: " << batteryCapacity << " kWh\n";
-    os << "Zaryad: " << chargeLevel << "%\n";
-    os << "Zapas hoda: " << calculateRange() << " km\n";
+    os << "Year: " << year << "\n";
+    os << "Seats: " << seats << "\n";
+    os << "Driver: " << driverName << "\n";
+    os << "Battery capacity: " << batteryCapacity << " kWh\n";
+    os << "Charge level: " << chargeLevel << "%\n";
+    os << "Range: " << calculateRange() << " km\n";
 }
 
 void ElectricCar::readFrom(istream& is) {
     is >> regNumber >> model >> year >> seats >> driverName >> batteryCapacity >> chargeLevel;
 }
-double ElectricCar::calculateCostPerKm() const {
-    return (batteryCapacity * 0.5) / (batteryCapacity * 6.0 / 100.0) / 100.0; 
-}
 
 string ElectricCar::getType() const { return "Electric"; }
+
+double ElectricCar::calculateCostPerKm() const {
+    return 0.08;
+}
