@@ -23,3 +23,7 @@ void PassengerCar::print(ostream& os) const {
 void PassengerCar::readFrom(istream& is) {
     is >> regNumber >> model >> year >> seats >> driverName >> fuelConsumption;
 }
+
+double PassengerCar::calculateCostPerKm() const{
+    return (fuelConsumption * 2.0) / 100.0;
+}

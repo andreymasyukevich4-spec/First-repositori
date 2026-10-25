@@ -23,4 +23,8 @@ void Sedan::readFrom(istream& is) {
     is >> hasSkiHatch;
 }
 
+double Sedan::calculateCostPerKm() const {
+    return PassengerCar::calculateCostPerKm();
+}
+
 string Sedan::getType() const { return "Sedan"; }

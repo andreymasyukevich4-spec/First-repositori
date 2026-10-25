@@ -23,4 +23,8 @@ void Minivan::readFrom(istream& is) {
     is >> hasThirdRow;
 }
 
+double Minivan::calculateCostPerKm() const {
+    return PassengerCar::calculateCostPerKm() + 0.5;
+}
+
 string Minivan::getType() const { return "Minivan"; }

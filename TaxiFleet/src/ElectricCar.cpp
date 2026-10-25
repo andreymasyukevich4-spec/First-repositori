@@ -33,5 +33,8 @@ void ElectricCar::print(ostream& os) const {
 void ElectricCar::readFrom(istream& is) {
     is >> regNumber >> model >> year >> seats >> driverName >> batteryCapacity >> chargeLevel;
 }
+double ElectricCar::calculateCostPerKm() const {
+    return (batteryCapacity * 0.5) / (batteryCapacity * 6.0 / 100.0) / 100.0; 
+}
 
 string ElectricCar::getType() const { return "Electric"; }

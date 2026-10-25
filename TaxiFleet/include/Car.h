@@ -40,6 +40,7 @@ public:
     virtual void print(ostream& os) const = 0;
     virtual void readFrom(istream& is) = 0;
     virtual string getType() const = 0;
+    virtual double calculateCostPerKm() const = 0;
 
     bool operator==(const Car& other) const;
     bool operator<(const Car& other) const;

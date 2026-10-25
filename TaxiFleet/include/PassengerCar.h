@@ -18,6 +18,7 @@ public:
 
     virtual void print(ostream& os) const override;
     virtual void readFrom(istream& is) override;
+    virtual double calculateCostPerKm() const override;
 };
 
 #endif

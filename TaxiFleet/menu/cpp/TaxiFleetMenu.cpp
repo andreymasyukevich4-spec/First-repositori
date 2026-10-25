@@ -382,6 +382,20 @@ void showCommonFieldsViaGetter(TaxiFleet& fleet) {
     }
 }
 
+void showPolymorphicCalculation(TaxiFleet& fleet) {
+    cout << "\n!POLIMORFNOE VYCHISLENIE (STOIMOST 1 KM)!\n";
+    if (fleet.getCars().empty()) {
+        cout << "Net mashin.\n";
+        return;
+    }
+    for (size_t i = 0; i < fleet.getCars().size(); ++i) {
+        Car* car = fleet.getCars()[i];
+        cout << "Mashina: " << car->getModel() 
+             << " (" << car->getType() << ")\n";
+        cout << "  Stoimost 1 km: " << car->calculateCostPerKm() << " y.e.\n";
+    }
+}
+
 void showInheritanceDemo(TaxiFleet& fleet) {
     int choice;
     do {
@@ -426,6 +440,7 @@ void showTaxiFleetMenu(TaxiFleet& fleet) {
         cout << "9. Udalit mashinu iz taksoparka\n";
         cout << "10. Demonstratia operatorov\n";
         cout << "11. Demonstratsia nasledovania\n";
+        cout << "12. Polimorfnoe vychislenie stoimosti\n";
         cout << "0. Nazad v Main Menu\n";
         cout << "Choice: ";
 
@@ -448,6 +463,7 @@ void showTaxiFleetMenu(TaxiFleet& fleet) {
             case 9: removeCarMenu(fleet); break;
             case 10: showOperatorsDemo(fleet); break;
             case 11: showInheritanceDemo(fleet); break;
+            case 12: showPolymorphicCalculation(fleet); break;
             case 0: cout << "Vozvrashchenie v Main Menu...\n"; break;
             default: cout << "Neverniy vibor! Poprobuyte snova.\n";
         }
