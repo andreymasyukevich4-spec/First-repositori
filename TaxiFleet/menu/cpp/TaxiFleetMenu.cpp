@@ -120,7 +120,7 @@ void editCarMenu(TaxiFleet& fleet) {
     cout << "1. Seats\n";
     cout << "2. Model\n";
     cout << "3. Driver Name\n";
-    cout << "4. Specific field\n";
+    cout << "4. Specific fields\n";
     cout << "Choice: ";
     int sub;
     if (cin >> sub) {
@@ -142,23 +142,59 @@ void editCarMenu(TaxiFleet& fleet) {
             if (type == "Sedan") {
                 Sedan* s = dynamic_cast<Sedan*>(car);
                 if (s) {
-                    int val = readBool("Has ski hatch? (1-yes, 0-no): ");
-                    s->setHasSkiHatch(val == 1);
-                    cout << "Ski hatch updated!\n";
+                    cout << "1. Ski hatch\n";
+                    cout << "2. Fuel consumption\n";
+                    cout << "Choice: ";
+                    int c;
+                    cin >> c;
+                    clearInput();
+                    if (c == 1) {
+                        int val = readBool("Has ski hatch? (1-yes, 0-no): ");
+                        s->setHasSkiHatch(val == 1);
+                        cout << "Ski hatch updated!\n";
+                    } else if (c == 2) {
+                        double fuel = readPositiveInt("Enter new fuel consumption (l/100km): ");
+                        s->setFuelConsumption(fuel);
+                        cout << "Fuel consumption updated!\n";
+                    }
                 }
             } else if (type == "Minivan") {
                 Minivan* m = dynamic_cast<Minivan*>(car);
                 if (m) {
-                    int val = readBool("Has third row? (1-yes, 0-no): ");
-                    m->setHasThirdRow(val == 1);
-                    cout << "Third row updated!\n";
+                    cout << "1. Third row\n";
+                    cout << "2. Fuel consumption\n";
+                    cout << "Choice: ";
+                    int c;
+                    cin >> c;
+                    clearInput();
+                    if (c == 1) {
+                        int val = readBool("Has third row? (1-yes, 0-no): ");
+                        m->setHasThirdRow(val == 1);
+                        cout << "Third row updated!\n";
+                    } else if (c == 2) {
+                        double fuel = readPositiveInt("Enter new fuel consumption (l/100km): ");
+                        m->setFuelConsumption(fuel);
+                        cout << "Fuel consumption updated!\n";
+                    }
                 }
             } else if (type == "Electric") {
                 ElectricCar* e = dynamic_cast<ElectricCar*>(car);
                 if (e) {
-                    int charge = readPositiveInt("Enter new charge level (%): ");
-                    e->setChargeLevel(charge);
-                    cout << "Charge updated!\n";
+                    cout << "1. Charge level\n";
+                    cout << "2. Battery capacity\n";
+                    cout << "Choice: ";
+                    int c;
+                    cin >> c;
+                    clearInput();
+                    if (c == 1) {
+                        int charge = readPositiveInt("Enter new charge level (%): ");
+                        e->setChargeLevel(charge);
+                        cout << "Charge level updated!\n";
+                    } else if (c == 2) {
+                        double battery = readPositiveInt("Enter new battery capacity (kWh): ");
+                        e->setBatteryCapacity(battery);
+                        cout << "Battery capacity updated!\n";
+                    }
                 }
             }
         } else {
@@ -351,7 +387,7 @@ void showInheritanceDemo(TaxiFleet& fleet) {
 }
 
 void showPolymorphicCalculation(TaxiFleet& fleet) {
-    cout << "\n=== POLYMORPHIC CALCULATION (COST PER 1 KM) ===\n";
+    cout << "\n!POLYMORPHIC CALCULATION (COST PER 1 KM)!\n";
     if (fleet.getCars().empty()) {
         cout << "No cars.\n";
         return;
@@ -365,7 +401,7 @@ void showPolymorphicCalculation(TaxiFleet& fleet) {
 }
 
 void showOperatorsDemo(TaxiFleet& fleet) {
-    cout << "\n=== OPERATOR OVERLOADING DEMONSTRATION ===\n";
+    cout << "\n!OPERATOR OVERLOADING DEMONSTRATION!\n";
 
     if (fleet.getCars().size() < 2) {
         cout << "Minimum 2 cars required for demonstration.\n";
@@ -426,7 +462,7 @@ void showOperatorsDemo(TaxiFleet& fleet) {
     fleet -= fakeCar;
     delete fakeCar;
 
-    cout << "\n=== END OF DEMONSTRATION ===\n";
+    cout << "\n!END OF DEMONSTRATION!\n";
 }
 
 void showTaxiFleetMenu(TaxiFleet& fleet) {

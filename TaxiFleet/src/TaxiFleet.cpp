@@ -115,17 +115,17 @@ TaxiFleet& TaxiFleet::operator-=(Car* car) {
     bool found = false;
     for (auto it = cars.begin(); it != cars.end(); ++it) {
         if (**it == *car) {
+            string removedNumber = (*it)->getRegNumber(); 
             delete *it;
             cars.erase(it);
             found = true;
+            cout << "Car " << removedNumber << " removed from the fleet.\n"; 
             break;
         }
     }
 
     if (!found) {
         cout << "Error: car with number " << car->getRegNumber() << " not found in the fleet.\n";
-    } else {
-        cout << "Car " << car->getRegNumber() << " removed from the fleet.\n";
     }
 
     return *this;

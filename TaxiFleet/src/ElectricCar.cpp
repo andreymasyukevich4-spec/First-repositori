@@ -1,6 +1,6 @@
 #include "../include/ElectricCar.h"
-
 using namespace std;
+const double ElectricFullChargePrice = 15.0; 
 
 ElectricCar::ElectricCar() : Car(), batteryCapacity(0.0), chargeLevel(0) {}
 
@@ -37,5 +37,7 @@ void ElectricCar::readFrom(istream& is) {
 string ElectricCar::getType() const { return "Electric"; }
 
 double ElectricCar::calculateCostPerKm() const {
-    return 0.08;
+     double maxRange = calculateRange();
+    if (maxRange == 0) return 0.0; 
+    return ElectricFullChargePrice / maxRange;
 }
