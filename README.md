@@ -1,36 +1,33 @@
-# My Lab
-Andrey Masyukevich Aleksandrovich
-Variant 17. Taxi Fleet system
-Need to control cars, orders and assign drivers
+# Taxi Fleet Management System
 
-LAB1 ADDING CLASSES
-in first part i introduce classes Car, Order, TaxiFleet.
-add structure Date and Time
-add menu to do some specific task
+**Student:** Andrey Masyukevich Aleksandrovich  
+**Variant:** 17  
 
-LAB2 FRIEND FUNCTIONS AND OVERLOADS
-in second part i introduce operator overloading and friend functions
-add operators ==, <, >, <<, >> for Car and Order
-add operators +=, -= for TaxiFleet
+**About the project:**  
+A C++ console application for managing a taxi fleet. The system allows users to add various types of cars (sedans, minivans, electric cars), create client orders, assign available cars to orders, and calculate the cost of a trip per kilometer.
 
-LAB3 INHERITANCE
-in third part i introduce class hierarchy
-add base class Car, intermediate class PassengerCar
-add derived classes Sedan, Minivan, ElectricCar
-add virtual methods print, readFrom, 
-Sonarcloud to check lab
-!https://sonarcloud.io/organizations/andreymasyukevich4-spec/projects
+---
 
->command for create exe file
-    g++ -std=c++17 -g -I. -Iinclude -Imenu/header
-    main.cpp
-    src/Car.cpp
-    src/PassengerCar.cpp
-    src/Sedan.cpp
-    src/Minivan.cpp
-    src/ElectricCar.cpp
-    src/Order.cpp
-    src/TaxiFleet.cpp
-    menu/cpp/TaxiFleetMenu.cpp
-    menu/cpp/MainMenu.cpp
-    -o program.exe
+### LAB 1: Adding Classes
+Introduced the core classes: `Car`, `Order`, and the managing class `TaxiFleet`. Added a console menu for basic operations (adding cars and orders, viewing lists).
+
+### LAB 2: Friend Functions and Operator Overloading
+Implemented operator overloading and friend functions. Added comparison operators (`==`, `<`, `>`), input/output operators (`<<`, `>>`) for `Car` and `Order`, and operators `+=`, `-=` for `TaxiFleet`.
+
+### LAB 3: Inheritance
+Built a class hierarchy:
+*   Base class: `Car`
+*   Intermediate class: `PassengerCar` (for fuel-powered cars)
+*   Derived classes: `Sedan`, `Minivan`, `ElectricCar`
+
+### LAB 4: Polymorphism and Abstract Classes
+Made the base class abstract by adding virtual methods (`print`, `readFrom`, `getType`). Implemented dynamic polymorphism through a collection of pointers (`vector<Car*>`) and added a specific calculation method (`calculateCostPerKm`) that behaves differently for each car type.
+
+---
+
+**SonarCloud Check:**  
+[https://sonarcloud.io/organizations/andreymasyukevich4-spec/projects](https://sonarcloud.io/organizations/andreymasyukevich4-spec/projects)
+
+**Build Command:**
+```bash
+g++ -std=c++17 -g -I. -Iinclude -Imenu/header main.cpp src/*.cpp menu/cpp/*.cpp -o program.exe
