@@ -1,6 +1,7 @@
 #include "../include/Sedan.h"
 using namespace std;
 const double SedanFuelPrice = 2.0;
+const double KmPerOneHundred = 100.0;
 
 Sedan::Sedan() : PassengerCar(), hasSkiHatch(false) {}
 
@@ -26,5 +27,5 @@ void Sedan::readFrom(istream& is) {
 string Sedan::getType() const { return "Sedan"; }
 
 double Sedan::calculateCostPerKm() const {
-    return (fuelConsumption * SedanFuelPrice) / 100.0;
+    return (fuelConsumption * SedanFuelPrice) / KmPerOneHundred;
 }

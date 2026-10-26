@@ -1,6 +1,7 @@
 #include "../include/PassengerCar.h"
-
 using namespace std;
+const double PassengerCarFuelCost = 2.0;
+const double KmPerOneHundred = 100.0;
 
 PassengerCar::PassengerCar() : Car(), fuelConsumption(0.0) {}
 
@@ -25,5 +26,5 @@ void PassengerCar::readFrom(istream& is) {
 }
 
 double PassengerCar::calculateCostPerKm() const {
-    return (fuelConsumption * 2.0) / 100.0;
+    return (fuelConsumption * PassengerCarFuelCost) / KmPerOneHundred;
 }

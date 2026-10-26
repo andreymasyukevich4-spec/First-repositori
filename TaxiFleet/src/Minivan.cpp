@@ -1,6 +1,7 @@
 #include "../include/Minivan.h"
 using namespace std;
 const double MinivanFuelPrice = 2.2;
+const double KmPerOneHundred = 100.0;
 
 Minivan::Minivan() : PassengerCar(), hasThirdRow(false) {}
 
@@ -26,5 +27,5 @@ void Minivan::readFrom(istream& is) {
 string Minivan::getType() const { return "Minivan"; }
 
 double Minivan::calculateCostPerKm() const {
-    return (fuelConsumption * MinivanFuelPrice) / 100.0;
+    return (fuelConsumption * MinivanFuelPrice) / KmPerOneHundred;
 }
