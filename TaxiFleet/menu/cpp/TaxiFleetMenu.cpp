@@ -6,6 +6,7 @@
 #include "../../include/ElectricCar.h"
 #include "../../include/Order.h"
 #include "../../include/Utils.h"
+#include "../../include/Collection.h"
 #include <iostream>
 
 using namespace std;
@@ -465,6 +466,72 @@ void showOperatorsDemo(TaxiFleet& fleet) {
     cout << "\n!END OF DEMONSTRATION!\n";
 }
 
+void showCollectionDemo(TaxiFleet& fleet) {
+    cout << "\n!TEMPLATE COLLECTION DEMONSTRATION!\n";
+
+    if (fleet.getCars().empty()) {
+        cout << "No cars in the fleet to demonstrate.\n";
+        return;
+    }
+
+    Collection<Car*> carCollection;
+    for (size_t i = 0; i < fleet.getCars().size(); ++i) {
+        carCollection.add(fleet.getCars()[i]);
+    }
+
+    cout << "\nAll cars in collection:\n";
+    for (int i = 0; i < carCollection.size(); ++i) {
+        cout << *carCollection.get(i) << "\n";
+    }
+
+    cout << "\n- Search Demonstration (Cars) -\n";
+    string searchNum = readString("Enter Registration Number to find: ");
+
+    int foundIndex = carCollection.find([searchNum](Car* c) {
+        return c->getRegNumber() == searchNum;
+    });
+
+    if (foundIndex != -1) {
+        cout << "Found at index: " << foundIndex << "\n";
+        cout << *carCollection.get(foundIndex) << "\n";
+    } else {
+        cout << "Not found.\n";
+    }
+
+    if (!fleet.getOrders().empty()) {
+        Collection<Order> orderCollection;
+        for (size_t i = 0; i < fleet.getOrders().size(); ++i) {
+            orderCollection.add(fleet.getOrders()[i]);
+        }
+
+        cout << "\nAll orders in collection:\n";
+        orderCollection.print();
+
+        cout << "\n- Search Demonstration (Orders) -\n";
+        string searchAddress = readString("Enter From Address to find: ");
+
+        int foundOrderIndex = orderCollection.find([searchAddress](const Order& o) {
+            return o.getFromAddress() == searchAddress;
+        });
+
+        if (foundOrderIndex != -1) {
+            cout << "Order found at index: " << foundOrderIndex << "\n";
+            cout << orderCollection.get(foundOrderIndex) << "\n";
+        } else {
+            cout << "Order not found.\n";
+        }
+    }
+
+    cout << "\n- Filter Demonstration -\n";
+    cout << "Filtered cars (more than 4 seats):\n";
+    filterAndPrint(carCollection, [](Car* c) {
+        if (c->getSeats() > 4) {
+            cout << *c << "\n";
+        }
+        return c->getSeats() > 4;
+    });
+}
+
 void showTaxiFleetMenu(TaxiFleet& fleet) {
     int choice;
     do {
@@ -481,6 +548,7 @@ void showTaxiFleetMenu(TaxiFleet& fleet) {
         cout << "10. Operator overloading demonstration (<, >, ==, <<, >>)\n";
         cout << "11. Inheritance demonstration\n";
         cout << "12. Polymorphic calculation\n";
+        cout << "13. Template Collection demonstration\n";
         cout << "0. Back to Main Menu\n";
         cout << "Choice: ";
 
@@ -504,6 +572,7 @@ void showTaxiFleetMenu(TaxiFleet& fleet) {
             case 10: showOperatorsDemo(fleet); break;
             case 11: showInheritanceDemo(fleet); break;
             case 12: showPolymorphicCalculation(fleet); break;
+            case 13: showCollectionDemo(fleet); break;
             case 0: cout << "Returning to Main Menu...\n"; break;
             default: cout << "Invalid choice! Try again.\n";
         }
