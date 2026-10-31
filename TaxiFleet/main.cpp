@@ -1,5 +1,6 @@
 #include "include/TaxiFleet.h"
 #include "menu/header/MainMenu.h"
+#include "include/Collection.h"
 #include <iostream>
 #include <limits>
 
