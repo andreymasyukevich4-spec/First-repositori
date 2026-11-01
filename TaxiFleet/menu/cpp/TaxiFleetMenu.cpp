@@ -467,69 +467,113 @@ void showOperatorsDemo(TaxiFleet& fleet) {
 }
 
 void showCollectionDemo(TaxiFleet& fleet) {
-    cout << "\n!TEMPLATE COLLECTION DEMONSTRATION!\n";
-
-    if (fleet.getCars().empty()) {
-        cout << "No cars in the fleet to demonstrate.\n";
-        return;
-    }
-
     Collection<Car*> carCollection;
     for (size_t i = 0; i < fleet.getCars().size(); ++i) {
         carCollection.add(fleet.getCars()[i]);
     }
 
-    cout << "\nAll cars in collection:\n";
-    for (int i = 0; i < carCollection.size(); ++i) {
-        cout << *carCollection.get(i) << "\n";
-    }
+    int choice;
+    do {
+        cout << "\n!TEMPLATE COLLECTION DEMO!\n";
+        cout << "1. [print] Show all cars\n";
+        cout << "2. [size] Show collection size\n";
+        cout << "3. [get] Get car by index\n";
+        cout << "4. [find] Find car by regNumber\n";
+        cout << "5. [remove] Remove car by index\n";
+        cout << "6. [clear] Clear collection\n";
+        cout << "7. [filter] Filter cars (> 4 seats)\n";
+        cout << "8. [orders] Demo with Orders collection\n";
+        cout << "0. Back\n";
+        cout << "Choice: ";
 
-    cout << "\n- Search Demonstration (Cars) -\n";
-    string searchNum = readString("Enter Registration Number to find: ");
-
-    int foundIndex = carCollection.find([searchNum](Car* c) {
-        return c->getRegNumber() == searchNum;
-    });
-
-    if (foundIndex != -1) {
-        cout << "Found at index: " << foundIndex << "\n";
-        cout << *carCollection.get(foundIndex) << "\n";
-    } else {
-        cout << "Not found.\n";
-    }
-
-    if (!fleet.getOrders().empty()) {
-        Collection<Order> orderCollection;
-        for (size_t i = 0; i < fleet.getOrders().size(); ++i) {
-            orderCollection.add(fleet.getOrders()[i]);
+        if (!(cin >> choice)) {
+            clearInput();
+            continue;
         }
+        clearInput();
 
-        cout << "\nAll orders in collection:\n";
-        orderCollection.print();
+        switch (choice) {
+            case 1:
+                cout << "\nAll cars in collection:\n";
+                for (int i = 0; i < carCollection.size(); ++i) {
+                    cout << *carCollection.get(i) << "\n";
+                }
+                break;
+            case 2:
+                cout << "Collection size: " << carCollection.size() << "\n";
+                break;
+            case 3: {
+                if (carCollection.size() == 0) {
+                    cout << "Collection is empty.\n";
+                    break;
+                }
+                int idx = readIndex("Enter index: ", carCollection.size());
+                cout << *carCollection.get(idx) << "\n";
+                break;
+            }
+            case 4: {
+                string searchNum = readString("Enter Registration Number to find: ");
+                int foundIndex = carCollection.find([searchNum](Car* c) {
+                    return c->getRegNumber() == searchNum;
+                });
+                if (foundIndex != -1) {
+                    cout << "Found at index: " << foundIndex << "\n";
+                    cout << *carCollection.get(foundIndex) << "\n";
+                } else {
+                    cout << "Not found.\n";
+                }
+                break;
+            }
+            case 5: {
+                if (carCollection.size() == 0) {
+                    cout << "Collection is empty.\n";
+                    break;
+                }
+                int idx = readIndex("Enter index to remove: ", carCollection.size());
+                carCollection.remove(idx);
+                cout << "Car removed from collection.\n";
+                break;
+            }
+            case 6:
+                carCollection.clear();
+                cout << "Collection cleared.\n";
+                break;
+            case 7:
+                cout << "\nFiltered cars (more than 4 seats):\n";
+                filterAndPrint(carCollection, [](Car* c) {
+                    if (c->getSeats() > 4) {
+                        cout << *c << "\n";
+                    }
+                    return c->getSeats() > 4;
+                });
+                break;
+            case 8: {
+                Collection<Order> orderCollection;
+                for (size_t i = 0; i < fleet.getOrders().size(); ++i) {
+                    orderCollection.add(fleet.getOrders()[i]);
+                }
+                cout << "\nAll orders in collection:\n";
+                orderCollection.print();
 
-        cout << "\n- Search Demonstration (Orders) -\n";
-        string searchAddress = readString("Enter From Address to find: ");
-
-        int foundOrderIndex = orderCollection.find([searchAddress](const Order& o) {
-            return o.getFromAddress() == searchAddress;
-        });
-
-        if (foundOrderIndex != -1) {
-            cout << "Order found at index: " << foundOrderIndex << "\n";
-            cout << orderCollection.get(foundOrderIndex) << "\n";
-        } else {
-            cout << "Order not found.\n";
+                cout << "\nSearch order by From Address:\n";
+                string addr = readString("Enter address: ");
+                int idx = orderCollection.find([addr](const Order& o) {
+                    return o.getFromAddress() == addr;
+                });
+                if (idx != -1) {
+                    cout << "Found at index: " << idx << "\n";
+                    cout << orderCollection.get(idx) << "\n";
+                } else {
+                    cout << "Not found.\n";
+                }
+                break;
+            }
+            case 0:
+                break;
+            default:
+                cout << "Invalid choice!\n";
         }
-    }
-
-    cout << "\n- Filter Demonstration -\n";
-    cout << "Filtered cars (more than 4 seats):\n";
-    filterAndPrint(carCollection, [](Car* c) {
-        if (c->getSeats() > 4) {
-            cout << *c << "\n";
-        }
-        return c->getSeats() > 4;
-    });
+    } while (choice != 0);
 }
 
 void showTaxiFleetMenu(TaxiFleet& fleet) {
