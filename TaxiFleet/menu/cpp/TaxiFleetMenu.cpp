@@ -483,6 +483,7 @@ void showCollectionDemo(TaxiFleet& fleet) {
         cout << "6. [clear] Clear collection\n";
         cout << "7. [filter] Filter cars (> 4 seats)\n";
         cout << "8. [orders] Demo with Orders collection\n";
+        cout << "9. [add] Create and add new car\n"; 
         cout << "0. Back\n";
         cout << "Choice: ";
 
@@ -566,6 +567,41 @@ void showCollectionDemo(TaxiFleet& fleet) {
                 } else {
                     cout << "Not found.\n";
                 }
+                break;
+            }
+            case 9: {
+                cout << "\nWhich car to add?\n";
+                cout << "1. Sedan\n";
+                cout << "2. Minivan\n";
+                cout << "3. ElectricCar\n";
+                cout << "Choice: ";
+                int typeChoice;
+                cin >> typeChoice;
+                clearInput();
+
+                string r = readString("Enter Registration Number: ");
+                string m = readString("Enter Model: ");
+                int y = readYear("Enter Year: ");
+                int s = readPositiveInt("Enter Seats: ");
+                string d = readString("Enter Driver Name: ");
+
+                if (typeChoice == 1) {
+                    double fuel = readPositiveInt("Enter Fuel Consumption (l/100km): ");
+                    int ski = readBool("Has ski hatch? (1-yes, 0-no): ");
+                    carCollection.add(new Sedan(r, m, y, s, d, fuel, ski == 1));
+                } else if (typeChoice == 2) {
+                    double fuel = readPositiveInt("Enter Fuel Consumption (l/100km): ");
+                    int third = readBool("Has third row? (1-yes, 0-no): ");
+                    carCollection.add(new Minivan(r, m, y, s, d, fuel, third == 1));
+                } else if (typeChoice == 3) {
+                    double battery = readPositiveInt("Enter Battery Capacity (kWh): ");
+                    int charge = readPositiveInt("Enter Charge Level (%): ");
+                    carCollection.add(new ElectricCar(r, m, y, s, d, battery, charge));
+                } else {
+                    cout << "Invalid car type.\n";
+                    break;
+                }
+                cout << "Car added to collection!\n";
                 break;
             }
             case 0:
