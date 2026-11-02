@@ -12,13 +12,17 @@ private:
     std::vector<T> items;
 
 public:
-    void add(const T& item) {
+     void add(const T& item) {
         items.push_back(item);
     }
 
     void remove(int index) {
         if (index >= 0 && index < items.size())
             items.erase(items.begin() + index);
+    }
+    
+    bool empty() const {
+        return items.empty();
     }
 
     int size() const {
@@ -29,6 +33,14 @@ public:
         return items.at(index);
     }
 
+        T& operator[](int index) {
+        return items[index];
+    }
+
+    const T& operator[](int index) const {
+        return items[index];
+    }
+    
     void clear(){
         items.clear();
     }

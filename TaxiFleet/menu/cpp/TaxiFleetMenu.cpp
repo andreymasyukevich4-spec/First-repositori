@@ -20,7 +20,7 @@ void addSedanMenu(TaxiFleet& fleet) {
     string d = readString("Enter Driver Name: ");
     double fuel = readPositiveInt("Enter Fuel Consumption (l/100km): ");
     int ski = readBool("Has ski hatch? (1-yes, 0-no): ");
-    fleet.createSedan(r, m, y, s, d, fuel, ski == 1);
+    fleet.addSedan(r, m, y, s, d, fuel, ski == 1);
     cout << "Sedan successfully added!\n";
 }
 
@@ -33,7 +33,7 @@ void addMinivanMenu(TaxiFleet& fleet) {
     string d = readString("Enter Driver Name: ");
     double fuel = readPositiveInt("Enter Fuel Consumption (l/100km): ");
     int thirdRow = readBool("Has third row? (1-yes, 0-no): ");
-    fleet.createMinivan(r, m, y, s, d, fuel, thirdRow == 1);
+    fleet.addMinivan(r, m, y, s, d, fuel, thirdRow == 1);
     cout << "Minivan successfully added!\n";
 }
 
@@ -46,7 +46,7 @@ void addElectricCarMenu(TaxiFleet& fleet) {
     string d = readString("Enter Driver Name: ");
     double battery = readPositiveInt("Enter Battery Capacity (kWh): ");
     int charge = readPositiveInt("Enter Charge Level (%): ");
-    fleet.createElectricCar(r, m, y, s, d, battery, charge);
+    fleet.addElectricCar(r, m, y, s, d, battery, charge);
     cout << "ElectricCar successfully added!\n";
 }
 
@@ -244,18 +244,18 @@ void editOrderMenu(TaxiFleet& fleet) {
 }
 
 void removeCarMenu(TaxiFleet& fleet) {
-    if (fleet.getCars().empty()) {
+    if (fleet.getCars().size() == 0) {
         cout << "No available cars.\n";
         return;
     }
     cout << "\n!Removing car!\n";
     cout << "Available cars: 0 to " << fleet.getCars().size() - 1 << "\n";
-    for (size_t i = 0; i < fleet.getCars().size(); ++i) {
-        cout << i << ". " << fleet.getCars()[i]->getModel()
-             << " (" << fleet.getCars()[i]->getRegNumber() << ")\n";
+    for (int i = 0; i < fleet.getCars().size(); ++i) {
+        cout << i << ". " << fleet.getCars().get(i)->getModel()
+             << " (" << fleet.getCars().get(i)->getRegNumber() << ")\n";
     }
     int idx = readIndex("Enter car index to remove: ", fleet.getCars().size());
-    Car* carToRemove = fleet.getCars()[idx];
+    Car* carToRemove = fleet.getCars().get(idx);
     fleet -= carToRemove;
 }
 

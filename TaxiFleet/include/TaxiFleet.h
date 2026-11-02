@@ -5,24 +5,27 @@
 #include <string>
 #include "Car.h"
 #include "Order.h"
+#include "Collection.h"
 
 using namespace std;
 
 class TaxiFleet {
 private:
-    vector<Car*> cars;
-    vector<Order> orders;
+    Collection<Car*> cars;
+    Collection<Order> orders;
 
 public:
     TaxiFleet();
     ~TaxiFleet();
 
-    void createSedan(const string& regNumber, const string& model, int year, int seats,
-                     const string& driverName, double fuelConsumption, bool hasSkiHatch);
-    void createMinivan(const string& regNumber, const string& model, int year, int seats,
-                       const string& driverName, double fuelConsumption, bool hasThirdRow);
-    void createElectricCar(const string& regNumber, const string& model, int year, int seats,
-                           const string& driverName, double batteryCapacity, int chargeLevel);
+    void addSedan(const string& regNumber, const string& model, int year, int seats,
+                  const string& driverName, double fuelConsumption, bool hasSkiHatch);
+
+    void addMinivan(const string& regNumber, const string& model, int year, int seats,
+                    const string& driverName, double fuelConsumption, bool hasThirdRow);
+
+    void addElectricCar(const string& regNumber, const string& model, int year, int seats,
+                        const string& driverName, double batteryCapacity, int chargeLevel);
 
     void addOrder(const Order& order);
 
@@ -33,8 +36,8 @@ public:
     void printAllCars() const;
     void printAllOrders() const;
 
-    vector<Car*>& getCars() { return cars; }
-    vector<Order>& getOrders() { return orders; }
+    Collection<Car*>& getCars() { return cars; }
+    Collection<Order>& getOrders() { return orders; }
 
     TaxiFleet& operator+=(Car* car);
     TaxiFleet& operator-=(Car* car);
